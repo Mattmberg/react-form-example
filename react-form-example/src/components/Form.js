@@ -6,6 +6,21 @@ export const Form = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (questions.question.validationType === "text") {
+
+        } else if (questions.question.validationType === "date") {
+    
+        } else if (questions.question.validationType === "number") {
+    
+        } else if (questions.question.validationType === "checkbox") {
+
+        } else if (questions.question.validationType === "email") {
+        
+        } else {
+    
+        }
+
         if (value) {
           setValue('');
         }
@@ -17,7 +32,7 @@ export const Form = (props) => {
                 return (
                     <div key={question.name}>
                         <label>{question.name}</label>
-                        <input placeholder={question.name}></input>
+                        <input placeholder={question.name} type={question.type}></input>
                     </div>
                 )
             })}
