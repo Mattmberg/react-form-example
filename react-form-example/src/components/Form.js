@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 
 export const Form = (props) => {
-    const [value, setValue] = useState('');
     const questions = props.questions
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,22 +22,27 @@ export const Form = (props) => {
         } else {
     
         }
-
-        if (value) {
-          setValue('');
-        }
     };
 
     return (
         <form onSubmit={handleSubmit} className="">
-            {questions.map(question => {
+            <label>First Name</label>
+            <input placeholder="First Name" type="text" value={firstName} onChange={e => setFirstName(e.target.value)}></input>
+
+            <label>Last Name</label>
+            <input placeholder="Last Name" type="text" value={lastName} onChange={e => setLastName(e.target.value)}></input>
+
+            <label>Email</label>
+            <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)}></input>
+            
+            {/*{questions.map(question => {
                 return (
                     <div key={question.name}>
                         <label>{question.name}</label>
                         <input placeholder={question.name} type={question.type}></input>
                     </div>
                 )
-            })}
+            })}*/}
             <button type="submit">Submit</button>
         </form>
     )
