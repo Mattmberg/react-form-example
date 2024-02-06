@@ -9,26 +9,20 @@ export const Form = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    let formInputList = [{firstName}, {lastName}, {email}, {username}, {password}];
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (questions.question.validationType === "text") {
-            if (value.length < 10 ) {
+        formInputList.forEach((question, index) => {
+            if (question.value.length < 10) {
                 setError("Fields must be filled with at least 10 characters.");
             } else {
                 setError(null);
             }
-        } else if (questions.question.validationType === "date") {
-    
-        } else if (questions.question.validationType === "number") {
-    
-        } else if (questions.question.validationType === "checkbox") {
+        });
 
-        } else if (questions.question.validationType === "email") {
-        
-        } else {
-    
-        }
+
     };
 
     return (
