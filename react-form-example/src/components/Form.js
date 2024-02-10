@@ -40,85 +40,106 @@ export const Form = () => {
       };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="">
-            <label htmlFor="firstName">First Name</label>
-            <input
-            name="firstName"
-            type="text"
-            {...register(
-            "firstName",   
-            {
-            required: "You must provide a first name.",
-            minLength: {
-                value: 8,
-                message: "First Name must have at least 8 characters."
-            }
-            })}
-        />
-        {errors.firstName && <p>{errors.firstName.message}</p>}
+        <div className="register-form">
+            <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-group">
+                <label>First Name</label>
+                <input
+                name="firstName"
+                type="text"
+                {...register('firstName')}
+                className={`form-control ${errors.firstName ? 'is-invalid' : ''}`}
+                />
+                <div className="invalid-feedback">{errors.firstName?.message}</div>
+            </div>
 
-            <label htmlFor="lastName">Last Name</label>
-            <input
-            name="lastName"
-            type="text"
-            {...register(
-            "lastName",
-            {
-            required: "You must provide a last name.",
-            minLength: {
-                value: 8,
-                message: "Last Name must have at least 8 characters."
-            }
-            })}
-        />
-        {errors.lastName && <p>{errors.lastName.message}</p>}
+            <div className="form-group">
+                <label>First Name</label>
+                <input
+                name="lastName"
+                type="text"
+                {...register('lastName')}
+                className={`form-control ${errors.lastName ? 'is-invalid' : ''}`}
+                />
+                <div className="invalid-feedback">{errors.lastName?.message}</div>
+            </div>
 
-            <label htmlFor="username">Username</label>
-            <input
-            name="username"
-            type="text"
-            {...register(
-            "username",
-            {
-            required: "You must specify a username.",
-            minLength: {
-                value: 8,
-                message: "Username must have at least 8 characters."
-            }
-            })}
-        />
-        {errors.username && <p>{errors.username.message}</p>}
+            <div className="form-group">
+                <label>Username</label>
+                <input
+                name="username"
+                type="text"
+                {...register('username')}
+                className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                />
+                <div className="invalid-feedback">{errors.username?.message}</div>
+            </div>
 
-        <label>Password</label>
-        <input
-            name="password"
-            type="password"
-            {...register(
-            "password",
-            {
-            required: "You must specify a password.",
-            minLength: {
-                value: 8,
-                message: "Password must have at least 8 characters."
-            }
-            })}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
+            <div className="form-group">
+                <label>Email</label>
+                <input
+                name="email"
+                type="text"
+                {...register('email')}
+                className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                />
+                <div className="invalid-feedback">{errors.email?.message}</div>
+            </div>
 
-        <label>Repeat password</label>
-        <input
-            name="password_repeat"
-            type="password"
-            {...register(
-            "password_repeat",
-            {
-            validate: value =>
-                value === password || "The passwords do not match."
-            })}
-        />
-        {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+            <div className="form-group">
+                <label>Password</label>
+                <input
+                name="password"
+                type="password"
+                {...register('password')}
+                className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                />
+                <div className="invalid-feedback">{errors.password?.message}</div>
+            </div>
+            
+            <div className="form-group">
+                <label>Confirm Password</label>
+                <input
+                name="confirmPassword"
+                type="password"
+                {...register('confirmPassword')}
+                className={`form-control ${
+                    errors.confirmPassword ? 'is-invalid' : ''
+                }`}
+                />
+                <div className="invalid-feedback">
+                {errors.confirmPassword?.message}
+                </div>
+            </div>
 
-            <input type="submit" onClick={handleSubmit(onSubmit)} />
-        </form>
-    )
-}
+            <div className="form-group form-check">
+                <input
+                name="acceptTerms"
+                type="checkbox"
+                {...register('acceptTerms')}
+                className={`form-check-input ${
+                    errors.acceptTerms ? 'is-invalid' : ''
+                }`}
+                />
+                <label htmlFor="acceptTerms" className="form-check-label">
+                I have read and agree to the Terms
+                </label>
+                <div className="invalid-feedback">{errors.acceptTerms?.message}</div>
+            </div>
+
+            <div className="form-group">
+                <button type="submit" className="btn btn-primary">
+                Register
+                </button>
+                <button
+                type="button"
+                onClick={reset}
+                className="btn btn-warning float-right"
+                >
+                Reset
+                </button>
+            </div>
+            </form>
+        </div>
+    );
+};
